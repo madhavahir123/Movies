@@ -1,0 +1,13 @@
+.logout-backgroud {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: #04040440;
+  z-index: 1;
+}
+/* backdrop-filter: blur(6px); */
