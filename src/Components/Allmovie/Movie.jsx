@@ -14,6 +14,8 @@ export default function Movie() {
   const [filtermoive, setFiltermoive] = useState([]);
   const [filter, setFilter] = useState(false);
 
+  console.log(favMov);
+
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
@@ -62,6 +64,10 @@ export default function Movie() {
 
   useEffect(() => {
     MovieFatch();
+    if (favMov) {
+      const favMovData = favMov.map((item) => item.id);
+      setFavMovie(favMovData);
+    }
   }, [page]);
 
   useEffect(() => {
@@ -88,18 +94,21 @@ export default function Movie() {
             {!filter ? (
               <div className="flex flex-wrap gap-5 w-[70%] m-auto mt-6">
                 {(filtermoive.length > 0 ? filtermoive : moviedata).map(
-                  (item, index) => (
-                    <MovieItem
-                      key={index}
-                      item={item}
-                      id={item?.id}
-                      MovieFatch={MovieFatch}
-                      moviedata={moviedata}
-                      title={item.original_title}
-                      img={item.poster_path}
-                      isFov={favMov.includes(item?.id)}
-                    />
-                  )
+                  (item, index) => {
+                    // console.log("isfav", favMov.includes(item?.id));
+                    return (
+                      <MovieItem
+                        key={index}
+                        item={item}
+                        id={item?.id}
+                        MovieFatch={MovieFatch}
+                        moviedata={moviedata}
+                        title={item.original_title}
+                        img={item.poster_path}
+                        isFov={favMov.includes(item?.id)}
+                      />
+                    );
+                  }
                 )}
                 <div className="items-center m-auto flex gap-3 mb-6">
                   <button

@@ -20,25 +20,37 @@ export default function Favmovie() {
 
   useEffect(() => {
     if (favMov) {
-      const data = favMov.map((item) => item.id);
+      const data = favMov.map((item) => item?.id);
       setFavMovie(data);
     }
-  }, []);
+  }, [movies]);
 
+  const setFavDataWhileUnfav = (id) => {
+    console.log("Call -------------------------------------------");
+
+    const favData = JSON.parse(localStorage.getItem("favmoviedata"));
+    const data = favData.filter((item) => item.id !== id);
+    setMovies(data);
+  };
+  console.log("favMov", favMov);
   return (
     <>
       <div className="flex flex-wrap gap-5 w-[70%] m-auto mt-6">
-        {movies.map((item, index) => (
-          <MovieItem
-            key={index}
-            item={item}
-            id={item.id}
-            title={item.original_title}
-            img={item.poster_path}
-            favicon={favicon}
-            isFov={favMov.includes(item.id)}
-          />
-        ))}
+        {movies.length > 0 &&
+          movies.map((item, index) => {
+            return (
+              <MovieItem
+                key={index}
+                item={item}
+                id={item.id}
+                title={item.original_title}
+                img={item.poster_path}
+                favicon={favicon}
+                isFov={true}
+                setFavDataWhileUnfav={setFavDataWhileUnfav}
+              />
+            );
+          })}
       </div>
     </>
   );

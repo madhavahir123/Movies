@@ -12,11 +12,13 @@ export default function MovieItem(props) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log("fav-->", fav);
 
   const favtoggal = () => {
     if (fav) {
       setFav(false);
       dispatch(removefavmovie(props.item.id));
+      props.setFavDataWhileUnfav(props.item.id);
     } else {
       setFav(true);
       dispatch(addfavmovie(props.item));
