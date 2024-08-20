@@ -92,7 +92,7 @@ export default function Movie() {
               />
             </div>
             {!filter ? (
-              <div className="flex flex-wrap gap-5 w-[70%] m-auto mt-6">
+              <div className="flex flex-wrap gap-5 w-[65%] m-auto mt-6">
                 {(filtermoive.length > 0 ? filtermoive : moviedata).map(
                   (item, index) => {
                     // console.log("isfav", favMov.includes(item?.id));
@@ -106,6 +106,7 @@ export default function Movie() {
                         title={item.original_title}
                         img={item.poster_path}
                         isFov={favMov.includes(item?.id)}
+                        vote={item.vote_average}
                       />
                     );
                   }

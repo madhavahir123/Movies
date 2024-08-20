@@ -31,7 +31,7 @@ export default function MovieItem(props) {
 
   return (
     <>
-      <div className="w-[234px] shadow-purple-300 rounded-sm text-center ring-1 ring-purple-300 shadow-xl mb-8 font-medium text-xl  overflow-hidden scale-100 hover:ring-purple-500  hover:scale-105">
+      <div className="w-[220px] shadow-purple-300 rounded-sm text-center ring-1 ring-purple-300 shadow-xl mb-8 font-medium text-xl  overflow-hidden scale-100 hover:ring-purple-500  hover:scale-105">
         <MdFavoriteBorder
           onClick={favtoggal}
           className={
@@ -47,7 +47,15 @@ export default function MovieItem(props) {
           className="w-full"
         />
 
-        <h3 className="">{props.title}</h3>
+        <div className="absolute top-[307px] left-3 ring-2 ring-green-500 w-16 rounded-3xl text-center bg-black text-white mb-3 p-2">
+          {props.vote}
+        </div>
+        <h3
+          className="mt-6 mb-3 text-xl hover:text-blue-700 "
+          onClick={() => detailhandler(props.item.id)}
+        >
+          {props.title}
+        </h3>
       </div>
     </>
   );
