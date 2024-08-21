@@ -5,4 +5,9 @@ export default {
     extend: {},
   },
   plugins: [],
+  veriants: {
+    extend: {
+      display: ["focus-group"],
+    },
+  },
 };
